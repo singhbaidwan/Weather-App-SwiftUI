@@ -16,61 +16,63 @@ enum BottomSheetPosition:CGFloat,CaseIterable{
 struct HomeView: View {
     
     @State var bottomSheetPosition:BottomSheetPosition = .middle
-    
+    @State var bottomSheetTranslation:CGFloat = BottomSheetPosition.middle.rawValue
+    var bottomSheetTranslationProrated:CGFloat{
+        (bottomSheetTranslation-BottomSheetPosition.middle.rawValue)/(BottomSheetPosition.top.rawValue-BottomSheetPosition.middle.rawValue)
+    }
     var body: some View {
         
         NavigationView{
-            ZStack{
-                Color.background
-                    .ignoresSafeArea()
-                
-                Image("Background")
-                    .resizable()
-                    .ignoresSafeArea()
-                Image("House")
-                    .frame(maxHeight: .infinity,alignment: .top)
-                    .padding(.top,257)
-                
-                VStack(spacing:-10){
-                    Text("Sirhind")
-                        .font(.largeTitle)
+            GeometryReader{ geometry in
+                let screenHeight = geometry.size.height+geometry.safeAreaInsets.top+geometry.safeAreaInsets.bottom
+                let imageOffset = screenHeight+36
+                ZStack{
+                    Color.background
+                        .ignoresSafeArea()
                     
-                    VStack{
+                    Image("Background")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .offset(y:-bottomSheetTranslationProrated*imageOffset)
+                    Image("House")
+                        .frame(maxHeight: .infinity,alignment: .top)
+                        .padding(.top,257)
+                        .offset(y:-bottomSheetTranslationProrated*imageOffset)
+                    
+                    VStack(spacing:-10){
+                        Text("Sirhind")
+                            .font(.largeTitle)
                         
-                        //                    Text("19°")
-                        //                        .font(.system(size: 96,weight: .thin))
-                        //                        .foregroundColor(.primary)
-                        //                    +
-                        //                    Text("\n")
-                        //                    +
-                        //                    Text("Mostly Clear")
-                        //                        .font(.title3.weight(.semibold))
-                        //                        .foregroundColor(.secondary)
-                        
-                        Text(attributedString)
-                        
-                        Text("H:24  L:18")
-                            .font(.title3.weight(.semibold))
-                        
+                        VStack{
+                            Text(attributedString)
+                            
+                            Text("H:24  L:18")
+                                .font(.title3.weight(.semibold))
+                            
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    .padding(.top,51)
+                    
+                    //MARK: Bottom Sheet
+                    BottomSheetView(position: $bottomSheetPosition) {
+//                        Text(bottomSheetTranslationProrated.formatted())
+                    } content: {
+                        ForecastView()
+                    }
+                    .onBottomSheetDrag { translation in
+                        bottomSheetTranslation = translation/screenHeight
+                    }
+                    
+                    
+                    //MARK: Tab Bar
+                    TabBar()
+                    {
+                        self.bottomSheetPosition = .top
+                    }
+                    
                 }
-                .padding(.top,51)
                 
-                //MARK: Bottom Sheet
-                BottomSheetView(position: $bottomSheetPosition) {
-//                    Text(bottomSheetPosition.rawValue.formatted())
-                } content: {
-                    ForecastView()
-                }
-
-                
-                //MARK: Tab Bar
-                TabBar()
-                {
-                    self.bottomSheetPosition = .top
-                }
-        
             }
             .navigationBarHidden(true)
         }

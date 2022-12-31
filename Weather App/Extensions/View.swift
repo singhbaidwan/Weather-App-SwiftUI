@@ -13,7 +13,7 @@ extension View{
     }
     
     /// function for creating the inner shadow of the view
-    func innerShadow<S:Shape,SS:ShapeStyle>(shape:S,color:SS,linewidth:CGFloat = 1,offsetX:CGFloat = 0,offsetY:CGFloat = 0,blur:CGFloat = 4,blendMode:BlendMode = .normal) ->some View
+    func innerShadow<S:Shape,SS:ShapeStyle>(shape:S,color:SS,linewidth:CGFloat = 1,offsetX:CGFloat = 0,offsetY:CGFloat = 0,blur:CGFloat = 4,blendMode:BlendMode = .normal,opacity:Double = 1) ->some View
     {
         return self
             .overlay{
@@ -22,9 +22,8 @@ extension View{
                     .blendMode(blendMode)
                     .offset(x:offsetX,y:offsetY)
                     .blur(radius: blur)
-                    .mask{
-                        shape
-                    }
+                    .mask(shape)
+                    .opacity(opacity)
             }
     }
 }
