@@ -17,6 +17,8 @@ struct HomeView: View {
     
     @State var bottomSheetPosition:BottomSheetPosition = .middle
     @State var bottomSheetTranslation:CGFloat = BottomSheetPosition.middle.rawValue
+    @State var hasDragged:Bool = false
+    
     var bottomSheetTranslationProrated:CGFloat{
         (bottomSheetTranslation-BottomSheetPosition.middle.rawValue)/(BottomSheetPosition.top.rawValue-BottomSheetPosition.middle.rawValue)
     }
@@ -39,7 +41,7 @@ struct HomeView: View {
                         .padding(.top,257)
                         .offset(y:-bottomSheetTranslationProrated*imageOffset)
                     
-                    VStack(spacing:-10){
+                    VStack(spacing:-10*(1-bottomSheetTranslationProrated)){
                         Text("Sirhind")
                             .font(.largeTitle)
                         
@@ -48,28 +50,40 @@ struct HomeView: View {
                             
                             Text("H:24  L:18")
                                 .font(.title3.weight(.semibold))
+                                .opacity(1-bottomSheetTranslationProrated)
                             
                         }
                         Spacer()
                     }
                     .padding(.top,51)
-                    
+                    .offset(y:-bottomSheetTranslationProrated*46)
                     //MARK: Bottom Sheet
                     BottomSheetView(position: $bottomSheetPosition) {
 //                        Text(bottomSheetTranslationProrated.formatted())
                     } content: {
-                        ForecastView()
+                        ForecastView(bottomSheetTranslationProrated: bottomSheetTranslationProrated)
                     }
                     .onBottomSheetDrag { translation in
                         bottomSheetTranslation = translation/screenHeight
+                        
+                        withAnimation(.easeInOut){
+                            if bottomSheetPosition == BottomSheetPosition.top{
+                                hasDragged = true
+                            }
+                            else
+                            {
+                                hasDragged = false
+                            }
+                        }
                     }
                     
                     
                     //MARK: Tab Bar
-                    TabBar()
-                    {
+                    TabBar(action: {
                         self.bottomSheetPosition = .top
-                    }
+                    })
+                    .offset(y:bottomSheetTranslationProrated*115)
+                    
                     
                 }
                 
@@ -78,16 +92,16 @@ struct HomeView: View {
         }
     }
     private var attributedString:AttributedString{
-        var string = AttributedString("19°"+"\n "+"Mostly Clear")
+        var string = AttributedString("19°"+(hasDragged ? " | ": "\n ")+"Mostly Clear")
         
         if let temp = string.range(of: "19°"){
-            string[temp].font = .system(size: 96, weight: .thin)
-            string[temp].foregroundColor = .primary
+            string[temp].font = .system(size: (96-(bottomSheetTranslationProrated*(96-20))), weight: hasDragged ? .semibold : .thin)
+            string[temp].foregroundColor = hasDragged ? .secondary : .primary
         }
         
         if let pipe = string.range(of: " | "){
             string[pipe].font = .title3.weight(.semibold)
-            string[pipe].foregroundColor = .secondary
+            string[pipe].foregroundColor = .secondary.opacity(bottomSheetTranslationProrated)
         }
         
         if let weather = string.range(of: "Mostly Clear"){
