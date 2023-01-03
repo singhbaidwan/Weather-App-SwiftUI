@@ -39,7 +39,10 @@ struct ForecastView: View {
                 
                 Image("Forecast Widgets")
                     .opacity(bottomSheetTranslationProrated)
-                
+                HStack{
+                 UVIndexView()
+                    SunTimingView()
+                }
             }
         }
         .backgroundBlur(radius: 25, opaque: true)
