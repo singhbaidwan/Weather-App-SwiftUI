@@ -36,15 +36,27 @@ struct ForecastView: View {
                     .padding(.vertical,20)
                 }
                 .padding(.horizontal,20)
+//
+//                Image("Forecast Widgets")
+//                    .opacity(bottomSheetTranslationProrated)
                 
-                Image("Forecast Widgets")
-                    .opacity(bottomSheetTranslationProrated)
-                HStack{
-                 UVIndexView()
-                    SunTimingView()
-                }
-                HStack{
-                    windDirectionView()
+                VStack(spacing: 20){
+                    AirQualityView()
+                    HStack(spacing:20){
+                        UVIndexView()
+                        SunTimingView()
+                    }
+                    HStack(spacing:20){
+                        windDirectionView()
+                        CommonCardView(imageName: "drop.fill", sideTitle: "rainfall".uppercased(), mainTitle: "18 mm", mainTitle2: "in last hour",description: "1.2 mm expected in next 24h")
+                    }
+                    HStack(spacing: 20) {
+                        CommonCardView(imageName: "thermometer.medium", sideTitle: "FEELS LIKE", mainTitle: "19°", mainTitle2: "", description: "Similar to the actual temperature")
+                        CommonCardView(imageName: "humidity.fill", sideTitle: "HUMIDITY", mainTitle: "90%", mainTitle2: "", description: "The dew point is 17 right now")
+                    }
+                    HStack(spacing: 20) {
+                        CommonCardView(imageName: "eye.fill", sideTitle: "VISIBILITY", mainTitle: "8 km", mainTitle2: "", description: "Similar to the actual temperature")
+                    }
                 }
             }
         }

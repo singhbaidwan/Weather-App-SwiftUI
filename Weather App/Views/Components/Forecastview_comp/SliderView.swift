@@ -26,7 +26,7 @@ struct SliderView2: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: radius)
-                    .fill(LinearGradient(colors: [.green,.yellow,.red], startPoint: .leading, endPoint: .trailing))
+                    .fill(LinearGradient(colors: [.green,.yellow,.orange,.red,.purple], startPoint: .leading, endPoint: .trailing))
                 HStack {
                     Circle()
                         .foregroundColor(Color.white)
