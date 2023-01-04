@@ -56,6 +56,7 @@ struct ForecastView: View {
                     }
                     HStack(spacing: 20) {
                         CommonCardView(imageName: "eye.fill", sideTitle: "VISIBILITY", mainTitle: "8 km", mainTitle2: "", description: "Similar to the actual temperature")
+                        AtmospherePressureView()
                     }
                 }
             }
