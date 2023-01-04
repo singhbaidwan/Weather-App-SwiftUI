@@ -52,7 +52,7 @@ struct SunTimingView: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.weatherWidgetBackground,lineWidth: 2)
         }
-        .frame(width: 170,height: 180)
+        .frame(width: 180,height: 180)
         
         
     }

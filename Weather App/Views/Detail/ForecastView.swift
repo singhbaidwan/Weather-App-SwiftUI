@@ -43,6 +43,9 @@ struct ForecastView: View {
                  UVIndexView()
                     SunTimingView()
                 }
+                HStack{
+                    windDirectionView()
+                }
             }
         }
         .backgroundBlur(radius: 25, opaque: true)
