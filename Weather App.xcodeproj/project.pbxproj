@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B130B32296092BC00A8D3BC /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B130B31296092BC00A8D3BC /* SegmentedControl.swift */; };
+		0B63C79E29672551007E6341 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B63C79D29672551007E6341 /* NetworkManager.swift */; };
+		0B63C7A129672924007E6341 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B63C7A029672924007E6341 /* LocationManager.swift */; };
 		0B651E9829647BA200779E4E /* SunTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B651E9729647BA200779E4E /* SunTimingView.swift */; };
 		0B6DC36C296490E500D3227B /* UVIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6DC36B296490E500D3227B /* UVIndexView.swift */; };
 		0B6DC36E296498BB00D3227B /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6DC36D296498BB00D3227B /* SliderView.swift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		0B130B31296092BC00A8D3BC /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		0B63C79D29672551007E6341 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0B63C7A029672924007E6341 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0B651E9729647BA200779E4E /* SunTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunTimingView.swift; sourceTree = "<group>"; };
 		0B6DC36B296490E500D3227B /* UVIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndexView.swift; sourceTree = "<group>"; };
 		0B6DC36D296498BB00D3227B /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
@@ -74,6 +78,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B63C79F2967278D007E6341 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0B855134295DF2EF00CCCC40 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				0B855155295DF78300CCCC40 /* Extensions */,
+				0B63C79F2967278D007E6341 /* Services */,
 				0B855150295DF4D000CCCC40 /* Utils */,
 				0B85514F295DF4CE00CCCC40 /* Models */,
 				0B85514E295DF4CB00CCCC40 /* Views */,
@@ -135,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				0BD269DE295F39E400D4159C /* Shapes.swift */,
+				0B63C79D29672551007E6341 /* NetworkManager.swift */,
+				0B63C7A029672924007E6341 /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -277,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B63C79E29672551007E6341 /* NetworkManager.swift in Sources */,
 				0B855143295DF2EF00CCCC40 /* ContentView.swift in Sources */,
 				0B855159295DFA8600CCCC40 /* HomeView.swift in Sources */,
 				0BB5E2222965CD18004632D5 /* windDirectionView.swift in Sources */,
@@ -296,6 +311,7 @@
 				0BD269E8295F539C00D4159C /* View.swift in Sources */,
 				0B6DC36C296490E500D3227B /* UVIndexView.swift in Sources */,
 				0BD269E4295F463900D4159C /* ForecastView.swift in Sources */,
+				0B63C7A129672924007E6341 /* LocationManager.swift in Sources */,
 				0B85515B295E065E00CCCC40 /* TabBar.swift in Sources */,
 				0B130B32296092BC00A8D3BC /* SegmentedControl.swift in Sources */,
 				0BD269DF295F39E500D4159C /* Shapes.swift in Sources */,
